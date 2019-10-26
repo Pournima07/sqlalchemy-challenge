@@ -13,15 +13,15 @@ def Home():
     return(
             f"Welcome to Hawaii Climate App!<BR>"
             f"Available Routes:<br>"
-            f"/api/v1.0/precipitation<br>"
-            f"/api/v1.0/stations<br>"
-            f"/api/v1.0/tobs<br>"
-            f"api/v1.0/<start><br>"
-            f"api/v1.0/<end><br>"
+            f"<a href='/api/v1.0/precipitation/'>/api/v1.0/precipitation/</a><br>"
+            f"<a href='/api/v1.0/stations/'>/api/v1.0/stations/</a><br>"
+            f"<a href='/api/v1.0/tobs/'>/api/v1.0/tobs/</a><br>"
+            f"<a href='/api/v1.0/Temp/2016-08-01'>/api/v1.0/Temp/&lt;start_date&gt;/</a><br>"
+            f"<a href='/api/v1.0/Tempend/2016-08-01/2016-08-10'>/api/v1.0/Tempend/&lt;start_date&gt;/&lt;end_date&gt;/</a><br>"
     )
 
 
-@app.route("/precipitation")
+@app.route("/api/v1.0/precipitation/")
 def show_precip():
     print(" server recd request to show precipitation from consumer")
 
@@ -42,7 +42,7 @@ def show_precip():
 
     return jsonify(dict)
 
-@app.route("/stations")
+@app.route("/api/v1.0/stations/")
 def show_stations():
     print(" server recd request to show stations from consumer")
 
@@ -64,7 +64,7 @@ def show_stations():
 
     return jsonify (dict)
 
-@app.route("/tobs")
+@app.route("/api/v1.0/tobs/")
 def show_tobs():
     print(" server recd request to show tobs from consumer")
 
@@ -93,8 +93,8 @@ def show_tobs():
 
     return jsonify(dict)
 
-@app.route("/Temp/<start_date>")
-def show_Temp(start_date):
+@app.route("/api/v1.0/Temp/<start_date>")
+def Temp(start_date):
     print(" server recd request to show temp from consumer")
     print (start_date)
     
@@ -114,8 +114,8 @@ def show_Temp(start_date):
 
     return jsonify(qry_data)
 
-@app.route("/Tempend/<start_date>/<end_date>")
-def show_Tempend(start_date, end_date):
+@app.route("/api/v1.0/Tempend/<start_date>/<end_date>")
+def Tempend(start_date, end_date):
     print(" server recd request to show temp from consumer")
     print(start_date, end_date)
     
@@ -134,31 +134,6 @@ def show_Tempend(start_date, end_date):
     qry_data = qry.all()               
   
     return jsonify(qry_data)
-
-
-
-
-# ##########################3
-
-# @app.route("/")
-# def Home():
-#     Print(" server recd request from consumer")
-#     return(
-#             "Welcome to Hawaii Climate App!"
-# )
-# @app.route("/about")
-# def about():
-#     return(
-#                 f "Available Routes:"
-#                   "/api/v1.0/precipitation"
-# )
-          
-# #Return a JSON list of stations from the dataset.
-# dict = ({fill the info})
-# @app.route('/jasonRoute')
-# def jason(dict)
-#     Print(" server recd about request from consumer")
-#     return josonify ("/api/v1.0/stations")          
 
 if __name__=="__main__":
     app.run(debug = False)
